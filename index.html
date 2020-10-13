@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html,
+      body {
+        height: 100%;
+        padding: 0px;
+        margin: 0px;
+        max-height: 100%;
+        max-width: 100%;
+        /* background-color: white; */
+        overflow: hidden;
+        /* border-radius: 6px; */
+      }
+
+      /* Scale canvas with resize attribute to full size */
+      canvas[resize] {
+        width: 100%;
+        height: 100vh;
+      }
+
+      .buttons {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        border-radius: 3px;
+        color: white;
+        fill: white;
+        font-size: 11.5px;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        white-space: nowrap;
+        max-width: calc(100% - 16px);
+        overflow: hidden;
+        pointer-events: auto;
+        opacity: 0;
+        transition: opacity 300ms ease-in 0s;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+          "Segoe UI Symbol";
+        z-index: 2;
+        background-position: initial initial;
+        background-repeat: initial initial;
+      }
+
+      .bottom {
+        top: auto;
+        bottom: 4px;
+      }
+
+      .Btn {
+        display: inline;
+        cursor: pointer;
+        padding: 6px 9px;
+        border-right-width: 1px;
+        border-right-style: solid;
+        border-right-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .Btn:hover {
+        background-color: rgba(71, 76, 80);
+      }
+
+      .Btn:last-of-type {
+        border-right-color: transparent;
+      }
+
+      .app:hover .buttons {
+        /* display: inline; */
+        opacity: 1;
+      }
+    </style>
+
+    <!-- Load the Paper.js library -->
+    <script
+      type="text/javascript"
+      src="node_modules/paper/dist/paper-full.js"
+    ></script>
+    <!-- Define inlined PaperScript associate it with myCanvas -->
+    <script>
+      window.globals = {};
+    </script>
+    <script type="text/paperscript" src="js/draw.js" canvas="canvas"></script>
+  </head>
+
+  <body>
+    <!-- <div id="notion-ui"></div>
+    <div id="draw-ui"></div> -->
+
+    <div class="app">
+      <canvas id="canvas" resize></canvas>
+      <div class="buttons top left">
+        <div class="Btn" onclick="window.globals.downloadAsSVG()">Download</div>
+        <div class="Btn" onclick="window.globals.copyAsPNG()">Copy</div>
+        <div class="Btn" onclick="window.globals.deleteDrawing()">Clear</div>
+        <!-- <div class="Btn" onclick="window.globals.resetFromLocal()">Load</div> -->
+      </div>
+      <div class="buttons bottom middle">
+        <!-- <div class="downloadBtn Btn" onclick="window.globals.setWidth(1)">
+          1p
+        </div> -->
+        <!-- <div class="Btn" onclick="window.globals.setWidth(4)">4p</div> -->
+        <!-- <div class="deleteBtn Btn" onclick="window.globals.setWidth(6)">6p</div>
+        <div class="deleteBtn Btn" onclick="window.globals.setWidth(8)">8p</div>
+        <div class="deleteBtn Btn" onclick="window.globals.setWidth(10)">
+          10p
+        </div> -->
+        <div
+          id="modeBtn"
+          class="modeBtn Btn"
+          onclick="window.globals.toggleTheme()"
+        >
+          Theme
+        </div>
+        <!-- <div class="Btn">
+          <a href="/" target="_parent">Navigate</a>
+        </div> -->
+        <!-- <div class="deleteBtn Btn" onclick="window.globals.setColor('black')">
+          Black
+        </div>
+        <div class="deleteBtn Btn" onclick="window.globals.setColor('blue')">
+          Blue
+        </div>
+        <div class="deleteBtn Btn" onclick="window.globals.setColor('yellow')">
+          Yellow
+        </div> -->
+        <!-- <div class="deleteBtn Btn" onclick="window.globals.setWidth(10)">
+          <input type="color" onchange="window.globals.setColor()" />
+        </div> -->
+      </div>
+    </div>
+  </body>
+</html>
